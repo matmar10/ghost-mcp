@@ -1,0 +1,37 @@
+name: ghost-mcp
+services:
+  - name: ghost-mcp
+    dockerfile_path: Dockerfile
+    github:
+      repo: matmar10/ghost-mcp
+      branch: main
+      deploy_on_push: true
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: apps-s-1vcpu-0.5gb
+    health_check:
+      http_path: /health
+      initial_delay_seconds: 10
+      period_seconds: 30
+    envs:
+      - key: GHOST_API_URL
+        scope: RUN_TIME
+        type: SECRET
+      - key: GHOST_ADMIN_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: MCP_PASSWORD
+        scope: RUN_TIME
+        type: SECRET
+      - key: MCP_ISSUER_URL
+        scope: RUN_TIME
+        type: SECRET
+      - key: GHOST_API_VERSION
+        scope: RUN_TIME
+        value: "v5.0"
+      - key: TRANSPORT
+        scope: RUN_TIME
+        value: "http"
+      - key: PORT
+        scope: RUN_TIME
+        value: "8080"

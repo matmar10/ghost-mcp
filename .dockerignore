@@ -1,0 +1,10 @@
+node_modules/
+build/
+.git
+.env
+.claude
+.venv
+.vscode
+.qodo
+knowledge/
+assets/
